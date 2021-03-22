@@ -8,8 +8,17 @@ $comment: |
   The order of these types is important because it determines the
   order of attempted coercion (particularly important for primitive types).
 anyOf:
-  - $ref: CodeFragment
+  # Primitive nodes
+  - type: 'null'
+  - type: boolean
+  - type: integer
+  - type: number
+  - type: string
+  # Entities
+  - $ref: Cite
+  - $ref: CiteGroup
   - $ref: CodeExpression
+  - $ref: CodeFragment
   - $ref: Delete
   - $ref: Emphasis
   - $ref: ImageObject
@@ -20,10 +29,3 @@ anyOf:
   - $ref: Strong
   - $ref: Subscript
   - $ref: Superscript
-  - $ref: Cite
-  - $ref: CiteGroup
-  - type: integer
-  - type: number
-  - type: boolean
-  - type: 'null'
-  - type: string
