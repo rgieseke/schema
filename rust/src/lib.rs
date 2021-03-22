@@ -588,8 +588,8 @@ pub struct Article {
     /// Comments about this creative work.
     pub comments: Option<Vec<Comment>>,
 
-    /// The structured content of this creative work c.f. property `text`.
-    pub content: Option<Vec<Node>>,
+    /// The structured content of this article.
+    pub content: Option<Vec<BlockContent>>,
 
     /// Date/time of acceptance.
     pub date_accepted: Option<Date>,
@@ -5393,8 +5393,15 @@ pub enum GrantTypes {
 /// Union type for valid inline content.
 
 pub enum InlineContent {
-    CodeFragment(CodeFragment),
+    Null(Null),
+    Bool(Bool),
+    Integer(Integer),
+    Number(Number),
+    String(String),
+    Cite(Cite),
+    CiteGroup(CiteGroup),
     CodeExpression(CodeExpression),
+    CodeFragment(CodeFragment),
     Delete(Delete),
     Emphasis(Emphasis),
     ImageObject(ImageObject),
@@ -5405,13 +5412,6 @@ pub enum InlineContent {
     Strong(Strong),
     Subscript(Subscript),
     Superscript(Superscript),
-    Cite(Cite),
-    CiteGroup(CiteGroup),
-    Integer(Integer),
-    Number(Number),
-    Bool(Bool),
-    Null(Null),
-    String(String),
 }
 
 #[derive(Debug)]

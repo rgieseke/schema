@@ -864,6 +864,9 @@ web page, scholarly article, etc.
 class Article(CreativeWork):
     """An article, including news and scholarly articles."""
 
+    content: Optional[Array["BlockContent"]] = None
+    """The structured content of this article."""
+
     pageEnd: Optional[Union[int, str]] = None
     """The page on which the article ends; for example "138" or "xvi"."""
 
@@ -882,7 +885,7 @@ for example, "1-6, 9, 55".
         alternateNames: Optional[Array[str]] = None,
         authors: Optional[Array[Union["Person", "Organization"]]] = None,
         comments: Optional[Array["Comment"]] = None,
-        content: Optional[Array["Node"]] = None,
+        content: Optional[Array["BlockContent"]] = None,
         dateAccepted: Optional["Date"] = None,
         dateCreated: Optional["Date"] = None,
         dateModified: Optional["Date"] = None,
@@ -918,7 +921,6 @@ for example, "1-6, 9, 55".
             alternateNames=alternateNames,
             authors=authors,
             comments=comments,
-            content=content,
             dateAccepted=dateAccepted,
             dateCreated=dateCreated,
             dateModified=dateModified,
@@ -946,6 +948,8 @@ for example, "1-6, 9, 55".
             url=url,
             version=version
         )
+        if content is not None:
+            self.content = content
         if pageEnd is not None:
             self.pageEnd = pageEnd
         if pageStart is not None:
@@ -3938,7 +3942,7 @@ GrantTypes = Union["Grant", "MonetaryGrant"]
 """
 Union type for valid inline content.
 """
-InlineContent = Union["CodeFragment", "CodeExpression", "Delete", "Emphasis", "ImageObject", "Link", "MathFragment", "NontextualAnnotation", "Quote", "Strong", "Subscript", "Superscript", "Cite", "CiteGroup", int, float, bool, None, str]
+InlineContent = Union[None, bool, int, float, str, "Cite", "CiteGroup", "CodeExpression", "CodeFragment", "Delete", "Emphasis", "ImageObject", "Link", "MathFragment", "NontextualAnnotation", "Quote", "Strong", "Subscript", "Superscript"]
 
 
 """
